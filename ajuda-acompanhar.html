@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nakaty Prime — Acompanhar Solicitação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+
+    :root {
+      --wine: #701237;
+      --wine-deep: #4d0c26;
+      --gold: #e1b26c;
+      --gold-deep: #c4924a;
+      --cream: #fbf7f2;
+      --cream-deep: #f3ece2;
+      --blush: #f3e2e8;
+      --ink: #2b1118;
+      --ink-soft: #5a4047;
+      --taupe: #8a8178;
+      --line: rgba(112, 18, 55, 0.14);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    .serif { font-family: 'Cormorant Garamond', serif; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+    ::selection { background: var(--gold); color: var(--wine-deep); }
+
+    /* ---------- header ---------- */
+    header { position: relative; z-index: 100; }
+    .nav-top {
+      position: relative; display: flex; align-items: center; justify-content: center;
+      background: var(--wine); padding: 16px 32px;
+    }
+    .brand-lockup { display: flex; align-items: center; }
+    .brand-lockup img { height: 56px; width: auto; object-fit: contain; }
+    .nav-bottom {
+      display: flex; justify-content: center; gap: 36px; align-items: center;
+      background: var(--wine); padding: 13px 32px; border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-bottom a {
+      font-size: 14px; font-weight: 500; color: var(--blush); letter-spacing: 0.02em;
+      position: relative; padding: 4px 0; transition: color .2s;
+    }
+    .nav-bottom a:hover { color: var(--gold); }
+    .nav-bottom a.active { color: var(--gold); }
+    .nav-bottom a::after {
+      content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 1px;
+      background: var(--gold); transition: width .25s;
+    }
+    .nav-bottom a:hover::after, .nav-bottom a.active::after { width: 100%; }
+    .burger {
+      display: none; position: absolute; right: 32px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer; color: var(--gold);
+    }
+
+    /* ---------- page hero (enxuto) ---------- */
+    .page-hero {
+      position: relative; background: var(--wine-deep); padding: 64px 32px 72px; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 15% 20%, rgba(225,178,108,0.14), transparent 55%),
+        radial-gradient(circle at 85% 80%, rgba(225,178,108,0.1), transparent 50%);
+      pointer-events: none;
+    }
+    .page-hero .bg-lotus {
+      position: absolute; right: -60px; bottom: -90px; width: 340px; height: 340px;
+      color: rgba(255,255,255,0.05); pointer-events: none;
+    }
+    .page-hero-inner { max-width: 1180px; margin: 0 auto; position: relative; z-index: 2; }
+    .breadcrumb {
+      font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 18px; letter-spacing: 0.01em;
+    }
+    .breadcrumb a { color: rgba(255,255,255,0.75); transition: color .2s; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px; font-size: 12.5px; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px;
+    }
+    .eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold-deep); }
+    h1.page-title {
+      font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(32px, 4.5vw, 50px);
+      line-height: 1.12; color: #fff; max-width: 760px; letter-spacing: -0.01em;
+    }
+    .page-sub {
+      margin-top: 18px; font-size: 16.5px; color: rgba(255,255,255,0.85); max-width: 620px; line-height: 1.7;
+    }
+
+    /* ---------- content ---------- */
+    .content-section { padding: 72px 0 100px; background: var(--cream); }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600;
+      color: var(--wine); margin-bottom: 28px; transition: gap .2s;
+    }
+    .back-link:hover { gap: 12px; color: var(--gold-deep); }
+    .back-link svg { width: 14px; height: 14px; }
+
+    .content-card {
+      background: #fff; border: 1px solid var(--line); border-radius: 3px;
+      padding: 48px clamp(28px, 5vw, 64px); max-width: 880px;
+    }
+    .content-card h2 {
+      font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 20px;
+      color: var(--wine-deep); margin: 40px 0 16px;
+    }
+    .content-card h2:first-child { margin-top: 0; }
+    .content-card h3 {
+      font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 16px;
+      color: var(--wine); margin: 28px 0 12px;
+    }
+    .content-card p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.8; margin-bottom: 14px; }
+    .content-card p:last-child { margin-bottom: 0; }
+    .content-card strong { color: var(--ink); font-weight: 600; }
+    .content-card ul, .content-card ol {
+      margin: 4px 0 20px; padding-left: 0; list-style: none;
+    }
+    .content-card ul li, .content-card ol li {
+      position: relative; padding-left: 26px; font-size: 15.5px; color: var(--ink-soft);
+      line-height: 1.75; margin-bottom: 10px;
+    }
+    .content-card ul li::before {
+      content: ''; position: absolute; left: 0; top: 9px; width: 7px; height: 7px;
+      border-radius: 50%; background: var(--gold-deep);
+    }
+    .content-card ol { counter-reset: item; }
+    .content-card ol li { counter-increment: item; }
+    .content-card ol li::before {
+      content: counter(item) '.'; position: absolute; left: 0; top: 0; font-weight: 700;
+      color: var(--gold-deep); font-size: 14px;
+    }
+    .content-card a.inline-link { color: var(--wine); font-weight: 600; border-bottom: 1px solid var(--gold-deep); }
+    .content-card a.inline-link:hover { color: var(--gold-deep); }
+
+    .highlight-box {
+      background: var(--cream-deep); border-left: 3px solid var(--gold-deep); border-radius: 2px;
+      padding: 20px 24px; margin: 20px 0 24px;
+    }
+    .highlight-box p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
+    .highlight-box p + p { margin-top: 8px; }
+    .highlight-box strong { color: var(--wine-deep); }
+
+    .content-card table {
+      width: 100%; border-collapse: collapse; margin: 8px 0 24px; font-size: 14.5px;
+    }
+    .content-card table th {
+      background: var(--wine); color: #fff; text-align: left; padding: 12px 16px;
+      font-weight: 600; font-size: 13px; letter-spacing: 0.02em;
+    }
+    .content-card table th:first-child { border-radius: 2px 0 0 0; }
+    .content-card table th:last-child { border-radius: 0 2px 0 0; }
+    .content-card table td {
+      padding: 12px 16px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top;
+    }
+    .content-card table tr:last-child td { border-bottom: none; }
+
+    .btn-gold-block {
+      display: inline-flex; align-items: center; gap: 10px; background: var(--gold);
+      color: var(--wine-deep); padding: 15px 28px; font-size: 14px; font-weight: 600;
+      letter-spacing: 0.02em; border-radius: 2px; transition: background .2s, transform .2s; margin-top: 8px;
+    }
+    .btn-gold-block:hover { background: var(--gold-deep); color: #fff; transform: translateY(-1px); }
+
+    .toc {
+      background: var(--cream-deep); border: 1px solid var(--line); border-radius: 3px;
+      padding: 28px 32px; margin-bottom: 32px; max-width: 880px;
+    }
+    .toc h4 {
+      font-size: 12.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--wine);
+      margin-bottom: 14px;
+    }
+    .toc ol { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 32px; }
+    .toc ol li { margin-bottom: 8px; break-inside: avoid; }
+    .toc ol li a { font-size: 14px; color: var(--ink-soft); transition: color .2s; }
+    .toc ol li a:hover { color: var(--wine); }
+    @media (max-width: 640px) { .toc ol { columns: 1; } }
+
+    /* ---------- divider ---------- */
+    .divider-lotus { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 8px 0; }
+    .divider-lotus .line { height: 1px; width: 80px; background: var(--line); }
+    .divider-lotus svg { width: 22px; height: 22px; color: var(--gold-deep); }
+
+    /* ---------- support cta ---------- */
+    .support-cta { background: var(--wine); color: #fff; }
+    .support-cta .wrap {
+      padding: 64px 32px; display: flex; flex-wrap: wrap; align-items: center;
+      justify-content: space-between; gap: 32px;
+    }
+    .support-cta h2 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(26px, 3vw, 34px); }
+    .support-cta p { margin-top: 10px; color: rgba(255,255,255,0.78); max-width: 440px; font-size: 15px; }
+    .support-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 10px; background: var(--gold);
+      color: var(--wine-deep); padding: 15px 28px; font-size: 14px; font-weight: 600;
+      letter-spacing: 0.02em; border-radius: 2px; transition: background .2s, transform .2s;
+    }
+    .btn-gold:hover { background: #fff; transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.4);
+      color: #fff; padding: 15px 28px; font-size: 14px; font-weight: 600; letter-spacing: 0.02em;
+      border-radius: 2px; transition: border-color .2s, background .2s;
+    }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(255,255,255,0.06); }
+
+    /* ---------- footer ---------- */
+    footer { background: var(--wine-deep); color: rgba(255,255,255,0.75); padding: 56px 0 24px; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-bottom: 32px; }
+    .footer-brand {
+      display: flex; align-items: center; gap: 12px; font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; color: #c4924a; margin-bottom: 10px;
+    }
+    .footer-slogan { font-size: 14px; color: rgba(255,255,255,0.55); }
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .footer-social a {
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.75);
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .footer-social a:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .footer-col h4 {
+      font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+    }
+    .footer-col a { display: block; font-size: 14.5px; color: rgba(255,255,255,0.75); margin-bottom: 10px; transition: color .2s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.12); padding-top: 20px; display: flex;
+      justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 12.5px; color: rgba(255,255,255,0.45);
+    }
+    @media (max-width: 780px) { .footer-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .content-card { padding: 32px 22px; } }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="nav-top">
+      <a href="https://nakatyprime.com.br" class="brand-lockup" aria-label="Nakaty Prime">
+        <img src="logo2.png" alt="Nakaty Prime">
+      </a>
+      <button class="burger" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <nav class="nav-bottom navlinks" style="font-family: 'Red Hat Display', sans-serif; font-size: 15px;">
+      <a href="https://nakatyprime.com.br">Início</a>
+      <a href="https://nakatyprime.com.br/produtos/">Produtos</a>
+      <a href="index.html">Quem Somos</a>
+      <a href="central-ajuda.html" class="active">Central de Ajuda</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <svg class="bg-lotus" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
+        <path d="M50 92 C50 92 50 50 50 50 M50 50 C30 50 14 34 14 12 C36 12 50 28 50 50 M50 50 C70 50 86 34 86 12 C64 12 50 28 50 50" />
+      </svg>
+      <div class="page-hero-inner">
+        <p class="breadcrumb"><a href="central-ajuda.html">Central de Ajuda</a> &nbsp;›&nbsp; Acompanhar Solicitação</p>
+        <p class="eyebrow">Central de Ajuda</p>
+        <h1 class="page-title">Acompanhar minha solicitação</h1>
+        <p class="page-sub">Consulte a qualquer momento o andamento de uma troca, devolução ou cancelamento já aberto.</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="wrap">
+        <a href="central-ajuda.html" class="back-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+        <line x1="19" y1="12" x2="5" y2="12" />
+        <polyline points="12 19 5 12 12 5" />
+      </svg>
+          Voltar para Central de Ajuda
+        </a>
+        <div class="content-card">
+          <p>Solicitações de troca, devolução ou cancelamento já abertas podem ser consultadas a qualquer
+            momento pela Central de Trocas, informando novamente o número do pedido e o e-mail ou CPF utilizado na
+            compra.</p>
+          <a href="https://nakatyprime.troque.app.br" target="_blank" rel="noopener" class="btn-gold-block">
+            Acessar Central de Trocas <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+          </a>
+
+          <p style="margin-top:24px;">O sistema localiza a solicitação existente e exibe a etapa atual do processo,
+            sem necessidade de abertura de um novo pedido.</p>
+
+          <div class="highlight-box">
+            <p>Solicitações registradas pela Central de Trocas recebem retorno em até
+              <strong>2 (dois) dias úteis</strong>.</p>
+          </div>
+
+          <p>Dúvidas sobre uma solicitação em andamento: <strong>trocas@nakatyprime.com.br</strong></p>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-lotus">
+      <span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3.5">
+        <path d="M50 88 C50 88 50 50 50 50 M50 50 C36 50 24 38 24 22 C40 22 50 36 50 50 M50 50 C64 50 76 38 76 22 C60 22 50 36 50 50 M50 50 C34 58 18 54 12 40 C28 34 42 40 50 50 M50 50 C66 58 82 54 88 40 C72 34 58 40 50 50" />
+      </svg>
+      <span class="line"></span>
+    </div>
+
+    <section class="support-cta">
+      <div class="wrap">
+        <div>
+          <h2>Ainda com dúvidas?</h2>
+          <p>Nossa equipe responde solicitações registradas pela Central de Trocas em até 2 dias úteis.</p>
+        </div>
+        <div class="support-links">
+          <a href="https://wa.me/5515991593170" target="_blank" rel="noopener" class="btn-gold">
+            WhatsApp
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+          <a href="mailto:trocas@nakatyprime.com.br" class="btn-outline">trocas@nakatyprime.com.br</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <img src="lotus-nakaty.png" alt="Nakaty Prime" style="width:52px;height:52px;object-fit:contain;">
+            Nakaty Prime
+          </div>
+          <p class="footer-slogan">Escolhida por quem entende de cuidado.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/nakatyprime" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://wa.me/5515991593170" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z">
+                </path>
+                <path
+                  d="M12.004 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.762.462 3.484 1.34 5.003l-1.42 5.19 5.312-1.394a9.96 9.96 0 0 0 4.765 1.213h.004c5.514 0 9.997-4.483 9.997-9.997 0-2.67-1.04-5.18-2.929-7.07a9.935 9.935 0 0 0-7.072-2.942zm5.85 15.849a8.29 8.29 0 0 1-5.85 2.424h-.003a8.302 8.302 0 0 1-4.223-1.155l-.303-.18-3.146.825.84-3.068-.198-.315a8.264 8.264 0 0 1-1.269-4.417c0-4.591 3.736-8.327 8.328-8.327a8.272 8.272 0 0 1 5.888 2.444 8.272 8.272 0 0 1 2.436 5.885 8.284 8.284 0 0 1-2.5 5.884z">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <a href="https://nakatyprime.com.br">Início</a>
+          <a href="https://nakatyprime.com.br/produtos/">Produtos</a>
+          <a href="index.html">Quem Somos</a>
+          <a href="central-ajuda.html">Central de Ajuda</a>
+        </div>
+        <div class="footer-col">
+          <h4>Atendimento</h4>
+          <a href="mailto:nakatyprime@gmail.com">Email</a>
+          <a href="https://wa.me/5515991593170" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="mailto:trocas@nakatyprime.com.br">Trocas</a>
+          <a href="mailto:cancelamentos@nakatyprime.com.br">Cancelamentos</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Nakaty Prime. Todos os direitos reservados.</span>
+        <span>Revenda especializada em insumos de podologia</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.querySelector('.burger');
+    const navlinks = document.querySelector('.navlinks');
+    burger.addEventListener('click', () => {
+      const isOpen = navlinks.style.display === 'flex';
+      const headerHeight = document.querySelector('.nav-top').offsetHeight;
+      navlinks.style.cssText = isOpen ? '' : `display:flex;position:fixed;top:${headerHeight}px;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--wine);padding:24px 32px;border-bottom:1px solid rgba(255,255,255,0.1);gap:20px;z-index:200;`;
+    });
+  </script>
+</body>
+
+</html>

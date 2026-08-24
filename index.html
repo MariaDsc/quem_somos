@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nakaty Prime — Quem somos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --wine: #701237;
+      --wine-deep: #4d0c26;
+      --gold: #e1b26c;
+      --gold-deep: #c4924a;
+      --cream: #fbf7f2;
+      --cream-deep: #f3ece2;
+      --blush: #f3e2e8;
+      --ink: #2b1118;
+      --ink-soft: #5a4047;
+      --taupe: #8a8178;
+      --line: rgba(112, 18, 55, 0.14);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html {
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .serif {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    img {
+      width: 575;
+      height: 230;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: var(--wine-deep);
+    }
+
+    /* ---------- lotus motif ---------- */
+    .lotus {
+      display: block;
+    }
+
+    .lotus path {
+      vector-effect: non-scaling-stroke;
+    }
+
+    /* ---------- header ---------- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      transition: background .3s;
+    }
+
+    .nav-top {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--wine);
+      padding: 16px 32px;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+    }
+
+    .brand-lockup img {
+      height: 56px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-bottom {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      align-items: center;
+      background: var(--wine);
+      padding: 13px 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-bottom a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--blush);
+      letter-spacing: 0.02em;
+      position: relative;
+      padding: 4px 0;
+      transition: color .2s;
+    }
+
+    .nav-bottom a:hover {
+      color: var(--gold);
+    }
+
+    .nav-bottom a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width .25s;
+    }
+
+    .nav-bottom a:hover::after {
+      width: 100%;
+    }
+
+    .burger {
+      display: none;
+      position: absolute;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gold);
+    }
+
+    /* ---------- hero ---------- */
+    .hero {
+      position: relative;
+      padding: 200px 32px 130px;
+      overflow: hidden;
+      background: var(--wine-deep);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-carousel {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(135deg,
+          rgba(22, 10, 14, 0.68) 0%,
+          rgba(35, 14, 20, 0.75) 50%,
+          rgba(8, 8, 10, 0.72) 100%);
+    }
+
+    .hero-dots {
+      display: flex;
+      gap: 10px;
+      margin-top: 48px;
+    }
+
+    .hero-dot {
+      width: 28px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background .3s, width .3s;
+    }
+
+    .hero-dot.active {
+      background: var(--gold);
+      width: 48px;
+    }
+
+    .hero-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    @keyframes fadeUpIn {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-inner .eyebrow,
+    .hero-inner .hero-title,
+    .hero-inner .hero-sub,
+    .hero-inner .hero-actions,
+    .hero-inner .hero-dots {
+      opacity: 0;
+      animation: fadeUpIn .9s ease forwards;
+    }
+
+    .hero-inner .eyebrow {
+      animation-delay: .1s;
+    }
+
+    .hero-inner .hero-title {
+      animation-delay: .25s;
+    }
+
+    .hero-inner .hero-sub {
+      animation-delay: .4s;
+    }
+
+    .hero-inner .hero-actions {
+      animation-delay: .55s;
+    }
+
+    .hero-inner .hero-dots {
+      animation-delay: .7s;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--gold-deep);
+    }
+
+    h1.hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: clamp(44px, 6vw, 82px);
+      line-height: 1.05;
+      color: #fff;
+      max-width: 780px;
+      letter-spacing: -0.01em;
+      text-shadow: 0 2px 24px rgba(43, 17, 24, 0.4);
+    }
+
+    h1.hero-title em {
+      font-style: italic;
+      color: var(--gold-deep);
+      font-weight: 500;
+    }
+
+    .hero-sub {
+      margin-top: 28px;
+      font-size: 19px;
+      color: rgba(255, 255, 255, 0.88);
+      max-width: 540px;
+      font-weight: 400;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 18px;
+      margin-top: 46px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--wine);
+      color: #fff;
+      padding: 16px 32px;
+      font-size: 14.5px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      border-radius: 2px;
+      transition: background .2s, transform .2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--wine-deep);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--wine);
+      font-size: 14.5px;
+      font-weight: 600;
+      padding: 16px 6px;
+      border-bottom: 1px solid var(--gold-deep);
+      letter-spacing: 0.02em;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 56px;
+      margin-top: 64px;
+      flex-wrap: wrap;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      color: var(--wine);
+      font-weight: 600;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--taupe);
+      margin-top: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ---------- divider ---------- */
+    .divider-lotus {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 20px 0;
+    }
+
+    .divider-lotus .line {
+      height: 1px;
+      width: 80px;
+      background: var(--line);
+    }
+
+    .divider-lotus svg {
+      width: 22px;
+      height: 22px;
+      color: var(--gold-deep);
+      transform-origin: 50% 50%;
+    }
+
+    .divider-lotus.on-dark {
+      background: var(--wine-deep);
+    }
+
+    .divider-lotus.on-dark .line {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .divider-lotus.on-dark svg {
+      color: var(--gold);
+    }
+
+    /* ---------- table of contents / sumário ---------- */
+    .toc {
+      padding: 20px 0 8px;
+    }
+
+    .toc-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .toc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--wine-deep);
+      background: #fff;
+      transition: background .3s ease, color .3s ease, border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+    }
+
+    .toc-link:hover {
+      background: var(--wine);
+      color: #fff;
+      border-color: var(--wine);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(112, 18, 55, 0.18);
+    }
+
+    .toc-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--gold-deep);
+      transition: color .3s ease;
+    }
+
+    .toc-link:hover .toc-num {
+      color: var(--gold);
+    }
+
+    /* ---------- section shared ---------- */
+    section {
+      padding: 60px 0;
+    }
+
+    .section-head {
+      max-width: 640px;
+      margin-bottom: 64px;
+    }
+
+    .section-eyebrow {
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(30px, 4vw, 44px);
+      color: var(--wine-deep);
+      line-height: 1.15;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--gold-deep);
+    }
+
+    .section-desc {
+      margin-top: 18px;
+      font-size: 16.5px;
+      color: var(--ink-soft);
+      line-height: 1.75;
+    }
+
+    .center {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ---------- história ---------- */
+    .historia {
+      background: var(--cream);
+      color: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .historia .section-eyebrow {
+      color: var(--gold-deep);
+    }
+
+    .historia-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .historia-copy .kicker {
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 16px;
+    }
+
+    .historia-copy h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(30px, 4vw, 42px);
+      color: var(--wine-deep);
+      margin-bottom: 28px;
+    }
+
+    .historia-copy p {
+      font-size: 16px;
+      color: var(--ink-soft);
+      line-height: 1.85;
+      margin-bottom: 18px;
+      text-align: justify;
+    }
+
+    .historia-visual {
+      position: relative;
+      aspect-ratio: 2.5/5;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .historia-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .historia-visual .photo-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(135deg,
+          rgba(22, 10, 14, 0.62) 0%,
+          rgba(112, 18, 55, 0.32) 50%,
+          rgba(8, 8, 10, 0.58) 100%);
+    }
+
+    .historia-visual::after {
+      content: '';
+      position: absolute;
+      inset: 14px;
+      z-index: 2;
+      border: 1px solid rgba(225, 178, 108, 0.4);
+      pointer-events: none;
+    }
+
+    /* ---------- about ---------- */
+    .about {
+      background: var(--cream);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+      aspect-ratio: 5/5;
+      background: linear-gradient(155deg, var(--wine) 0%, var(--wine-deep) 100%);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .about-visual::after {
+      content: '';
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(225, 178, 108, 0.35);
+      pointer-events: none;
+    }
+
+    .about-copy p {
+      font-size: 16.5px;
+      color: var(--ink-soft);
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .about-copy .lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 25px;
+      color: var(--wine-deep);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .pillar {
+      border: 1px solid var(--line);
+      padding: 20px 16px;
+      text-align: center;
+      border-radius: 2px;
+      background: #fff;
+    }
+
+    .pillar-icon {
+      width: 30px;
+      height: 30px;
+      margin: 0 auto 12px;
+      color: var(--wine);
+    }
+
+    .pillar-name {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--wine-deep);
+      letter-spacing: 0.02em;
+    }
+
+    /* ---------- missão, visão e valores ---------- */
+    .values {
+      background: var(--wine);
+      color: #fff;
+    }
+
+    .values .section-eyebrow {
+      color: var(--gold);
+    }
+
+    .values .section-title {
+      color: #fff;
+    }
+
+    .values .section-title em {
+      color: var(--gold);
+    }
+
+    .mvv-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      margin-bottom: 64px;
+    }
+
+    .mvv-block h4 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .mvv-block blockquote {
+      padding: 2px 0 2px 24px;
+      border-left: 3px solid var(--gold);
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16.5px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.94);
+    }
+
+    .valores-label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .value-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      padding: 32px 30px;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(112, 18, 55, 0.1);
+    }
+
+    .value-card .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 22px;
+      color: var(--gold-deep);
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .value-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 25px;
+      margin-bottom: 10px;
+      color: var(--wine-deep);
+    }
+
+    .value-card p {
+      font-size: 15.5px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+
+    /* ---------- catalog ---------- */
+    .catalog {
+      background: var(--cream-deep);
+    }
+
+    .cat-controls {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 240px;
+      max-width: 380px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 13px 18px 13px 42px;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      background: #fff;
+      font-size: 14.5px;
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--gold-deep);
+    }
+
+    .search-box svg {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 17px;
+      height: 17px;
+      color: var(--taupe);
+    }
+
+    .results-count {
+      font-size: 13.5px;
+      color: var(--taupe);
+      white-space: nowrap;
+    }
+
+    .cat-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 28px 0 40px;
+    }
+
+    .tab {
+      padding: 9px 18px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      background: #fff;
+      cursor: pointer;
+      transition: all .2s;
+      letter-spacing: 0.01em;
+    }
+
+    .tab:hover {
+      border-color: var(--gold-deep);
+      color: var(--wine);
+    }
+
+    .tab.active {
+      background: var(--wine);
+      border-color: var(--wine);
+      color: #fff;
+    }
+
+    .cat-section {
+      margin-bottom: 8px;
+    }
+
+    .cat-section-title {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin: 56px 0 20px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--wine);
+    }
+
+    .cat-section-title h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 28px;
+      color: var(--wine-deep);
+    }
+
+    .cat-section-title .count {
+      font-size: 13px;
+      color: var(--taupe);
+    }
+
+    /* ---------- promo section ---------- */
+    .promo-section {
+      padding: 64px 0 8px;
+    }
+
+    .promo-section-title {
+      border-bottom-color: var(--gold-deep);
+    }
+
+    .promo-section-title h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .promo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .promo-card {
+      position: relative;
+      background: #fff;
+      border-radius: 6px;
+      padding: 20px 18px;
+      box-shadow: 0 1px 12px rgba(112, 18, 55, 0.08), 0 0 0 1px rgba(112, 18, 55, 0.1);
+      border-top: 3px solid var(--gold);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .promo-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(112, 18, 55, 0.14), 0 0 0 1px rgba(112, 18, 55, 0.1);
+    }
+
+    .promo-badge {
+      display: inline-block;
+      background: var(--wine);
+      color: #fff;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    .promo-card-name {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .promo-card-brand {
+      font-style: italic;
+      font-size: 13px;
+      color: var(--taupe);
+      margin-bottom: 14px;
+    }
+
+    .promo-card-prices {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .promo-card-prices .p-price-old {
+      font-size: 13px;
+    }
+
+    .promo-card-prices .p-price-promo {
+      font-size: 19px;
+    }
+
+    .promo-card-desc {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--line);
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .prod-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 1px 12px rgba(112, 18, 55, 0.08), 0 0 0 1px rgba(112, 18, 55, 0.1);
+    }
+
+    .prod-table tr {
+      border-bottom: 1px solid rgba(112, 18, 55, 0.08);
+    }
+
+    .prod-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .prod-table td {
+      padding: 15px 16px;
+      font-size: 14.5px;
+      vertical-align: middle;
+    }
+
+    .prod-table tr:nth-child(even) td {
+      background: rgba(251, 247, 242, 0.6);
+    }
+
+    .prod-table tr:hover td {
+      background: var(--blush) !important;
+    }
+
+    .p-name {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .p-name .p-brand-mobile {
+      display: none;
+    }
+
+    .p-brand {
+      color: var(--taupe);
+      font-style: italic;
+      font-size: 13.5px;
+      width: 140px;
+    }
+
+    .p-price {
+      text-align: right;
+      font-weight: 600;
+      color: var(--wine);
+      width: 110px;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .p-price-old {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--taupe);
+      text-decoration: line-through;
+      text-decoration-color: var(--taupe);
+    }
+
+    .p-price-promo {
+      display: block;
+      color: var(--wine);
+      font-weight: 700;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--taupe);
+    }
+
+    .no-results svg {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 16px;
+      color: var(--gold-deep);
+    }
+
+    .load-more-wrap {
+      text-align: center;
+      margin-top: 44px;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--wine);
+      color: var(--wine);
+      padding: 14px 30px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 2px;
+      background: transparent;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: all .2s;
+    }
+
+    .btn-outline:hover {
+      background: var(--wine);
+      color: #fff;
+    }
+
+    /* ---------- testimonial / quote ---------- */
+    .quote-section {
+      background: var(--wine-deep);
+      color: #fff;
+      text-align: center;
+      padding: 120px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-lotus {
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      opacity: 0.07;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 80px;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+      opacity: 0.7;
+    }
+
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(26px, 3.4vw, 40px);
+      max-width: 780px;
+      margin: 0 auto;
+      line-height: 1.4;
+      color: #fff;
+      position: relative;
+    }
+
+    .quote-attr {
+      margin-top: 28px;
+      font-size: 14px;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      position: relative;
+    }
+
+    /* ---------- contact / cta ---------- */
+    .cta-section {
+      background: var(--cream-deep);
+    }
+
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .cta-left {
+      padding: 64px 56px;
+    }
+
+    .cta-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 36px;
+      color: var(--wine-deep);
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+
+    .cta-left p {
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.75;
+      margin-bottom: 32px;
+      max-width: 440px;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 15px;
+    }
+
+    .contact-item svg {
+      width: 19px;
+      height: 19px;
+      color: var(--wine);
+      flex-shrink: 0;
+    }
+
+    .contact-item a:hover {
+      color: var(--wine);
+    }
+
+    .cta-right {
+      background: linear-gradient(160deg, var(--wine) 0%, var(--wine-deep) 100%);
+      padding: 64px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-right svg.bg-lotus {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      right: -80px;
+      bottom: -80px;
+      opacity: 0.1;
+      color: #fff;
+    }
+
+    .cta-right .tag {
+      font-size: 12.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .cta-right h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 28px;
+      color: #fff;
+      margin-bottom: 28px;
+      line-height: 1.4;
+      position: relative;
+    }
+
+    .cta-right .btn-white {
+      background: #fff;
+      color: var(--wine);
+      padding: 15px 28px;
+      border-radius: 2px;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      position: relative;
+      transition: transform .2s;
+    }
+
+    .cta-right .btn-white:hover {
+      transform: translateY(-1px);
+    }
+
+    /* ---------- footer ---------- */
+    footer {
+      background: var(--wine-deep);
+      color: rgba(255, 255, 255, 0.75);
+      padding: 64px 32px 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1.2fr;
+      gap: 32px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: #c4924a;
+      margin-bottom: 10px;
+    }
+
+    .footer-brand img {
+      height: 68px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .footer-slogan {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 500;
+      color: rgba(243, 226, 232, 0.62);
+      font-size: 19px;
+      letter-spacing: 0.01em;
+      text-transform: none;
+    }
+
+    .footer-col h4 {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 14.5px;
+      margin-bottom: 12px;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .footer-col a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 28px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.5);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .footer-social a {
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 0;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .footer-social a:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    /* ---------- scroll reveal ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .9s cubic-bezier(.16, .8, .24, 1), transform .9s cubic-bezier(.16, .8, .24, 1);
+      transition-delay: var(--reveal-delay, 0s);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .values-grid .value-card:nth-child(1) {
+      --reveal-delay: 0s;
+    }
+
+    .values-grid .value-card:nth-child(2) {
+      --reveal-delay: .1s;
+    }
+
+    .values-grid .value-card:nth-child(3) {
+      --reveal-delay: .2s;
+    }
+
+    .values-grid .value-card:nth-child(4) {
+      --reveal-delay: .3s;
+    }
+
+    .mvv-top .mvv-block:nth-child(1) {
+      --reveal-delay: 0s;
+    }
+
+    .mvv-top .mvv-block:nth-child(2) {
+      --reveal-delay: .12s;
+    }
+
+    .pillars .pillar {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .7s cubic-bezier(.16, .8, .24, 1), transform .7s cubic-bezier(.16, .8, .24, 1);
+    }
+
+    .pillars .pillar:nth-child(1) {
+      transition-delay: .05s;
+    }
+
+    .pillars .pillar:nth-child(2) {
+      transition-delay: .18s;
+    }
+
+    .pillars .pillar:nth-child(3) {
+      transition-delay: .31s;
+    }
+
+    .reveal.in .pillars .pillar,
+    .about-copy.in .pillars .pillar {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- responsive ---------- */
+    @media (max-width:900px) {
+      .navlinks {
+        display: none;
+      }
+
+      .navlinks a {
+        width: 100%;
+      }
+
+      .burger {
+        display: block;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .historia-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .historia-visual {
+        order: -1;
+      }
+
+      .pillars {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .mvv-top {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .cta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-right {
+        order: -1;
+      }
+
+      .hero {
+        padding: 150px 24px 90px;
+      }
+
+      .hero-carousel,
+      .hero-overlay {
+        display: block;
+      }
+
+      .wrap {
+        padding: 0 22px;
+      }
+
+      section {
+        padding: 32px 0;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .footer-brand {
+        justify-content: center;
+      }
+
+      .footer-social {
+        justify-content: center;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width:600px) {
+      .pillars {
+        grid-template-columns: 1fr;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .value-card {
+        padding: 26px 22px;
+      }
+
+      .hero-stats {
+        gap: 34px;
+      }
+
+      .cat-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-box {
+        max-width: none;
+      }
+
+      .p-brand {
+        display: none;
+      }
+
+      .p-name .p-brand-mobile {
+        display: block;
+        color: var(--taupe);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 12.5px;
+        margin-top: 2px;
+      }
+
+      .promo-section {
+        padding: 44px 0 4px;
+      }
+
+      .promo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .prod-table td {
+        padding: 13px 14px;
+      }
+
+      .cta-left {
+        padding: 40px 28px;
+      }
+
+      .cta-right {
+        padding: 40px 28px;
+      }
+
+      footer {
+        padding: 48px 24px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="nav-top">
+      <a href="https://nakatyprime.com.br" class="brand-lockup" aria-label="Nakaty Prime">
+        <img src="logo2.png" alt="Nakaty Prime">
+      </a>
+      <button class="burger" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <nav class="nav-bottom navlinks" style="font-family: 'Red Hat Display', sans-serif; font-size: 15px;">
+      <a href="https://nakatyprime.com.br">Início</a>
+      <a href="https://nakatyprime.com.br/produtos/">Produtos</a>
+      <a href="#top">Quem Somos</a>
+      <a href="central-ajuda.html">Central de Ajuda</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+
+      <div class="hero-carousel">
+        <div class="hero-slide active" style="background-image: url('4.png');"></div>
+
+        <div class="hero-slide" style="background-image: url('5.png');"></div>
+      </div>
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-inner">
+
+        <p class="eyebrow">Curadoria premium · Podologia profissional</p>
+
+        <h1 class="hero-title">
+          Escolhida por quem<br><em>entende</em> de cuidado.
+        </h1>
+        <p class="hero-sub">Insumos selecionados para podólogas, manicures e profissionais da saúde que não abrem
+          mão de procedência, agilidade e parceria de verdade.</p>
+        <div class="hero-actions">
+          <a href="https://nakatyprime.com.br" class="btn-primary" target="_blank" rel="noopener">
+            Visitar a loja
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+          <a href="#sobre" class="btn-ghost" style="color:#fff;border-color:rgba(225,178,108,0.7);">Conhecer a
+            Nakaty
+            Prime</a>
+        </div>
+        <!-- Carousel dots -->
+        <div class="hero-dots">
+          <span class="hero-dot active"></span>
+          <span class="hero-dot"></span>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-lotus">
+      <span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3.5">
+        <path
+          d="M50 88 C50 88 50 50 50 50 M50 50 C36 50 24 38 24 22 C40 22 50 36 50 50 M50 50 C64 50 76 38 76 22 C60 22 50 36 50 50 M50 50 C34 58 18 54 12 40 C28 34 42 40 50 50 M50 50 C66 58 82 54 88 40 C72 34 58 40 50 50" />
+      </svg>
+      <span class="line"></span>
+    </div>
+
+    <nav class="toc" aria-label="Sumário da página">
+      <div class="wrap">
+        <div class="toc-inner reveal">
+          <a href="#sobre" class="toc-link"><span class="toc-num">01</span>Sobre nós</a>
+          <a href="#historia" class="toc-link"><span class="toc-num">02</span>História</a>
+          <a href="#valores" class="toc-link"><span class="toc-num">03</span>Missão e valores</a>
+          <a href="#contato" class="toc-link"><span class="toc-num">04</span>Contato</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="about" id="sobre">
+      <div class="wrap">
+        <div class="about-grid">
+          <div class="reveal about-visual">
+            <img src="lotus-nakaty.png" alt="Flor de lótus Nakaty Prime"
+              style="width:80%; height:80%; object-fit:contain;">
+          </div>
+          <div class="reveal about-copy">
+            <p class="lead">Sofisticada e humana ao mesmo tempo.</p>
+            <p>A Nakaty Prime é uma revendedora especializada em insumos de podologia, com curadoria premium para
+              profissionais da área da saúde. Nascemos para servir quem cuida dos pés de outras pessoas todos os dias —
+              e que merece trabalhar com produtos à altura desse cuidado.</p>
+            <p>Cada item do nosso catálogo passa por seleção criteriosa. Não vendemos apenas insumos: construímos
+              parceria com podólogas, manicures e especialistas que confiam na nossa procedência e na nossa agilidade.
+            </p>
+            <div class="pillars">
+              <div class="pillar">
+                <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M9 12l2 2 4-4" />
+                  <circle cx="12" cy="12" r="9" />
+                </svg>
+                <div class="pillar-name">Profissional</div>
+              </div>
+              <div class="pillar">
+                <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M12 3l7 4v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V7z" />
+                </svg>
+                <div class="pillar-name">Confiável</div>
+              </div>
+              <div class="pillar">
+                <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M12 20.2s-6.8-4.4-9.2-8.6C1.2 8.3 2.6 5 6 5c1.9 0 3.4 1.1 4.4 2.7C11.4 6.1 12.9 5 14.8 5c3.4 0 4.8 3.3 3.2 6.6-2.4 4.2-9.2 8.6-9.2 8.6-.5.3-1 .3-1.5 0z" />
+                </svg>
+                <div class="pillar-name">Humana</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-lotus">
+      <span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3.5">
+        <path
+          d="M50 88 C50 88 50 50 50 50 M50 50 C36 50 24 38 24 22 C40 22 50 36 50 50 M50 50 C64 50 76 38 76 22 C60 22 50 36 50 50 M50 50 C34 58 18 54 12 40 C28 34 42 40 50 50 M50 50 C66 58 82 54 88 40 C72 34 58 40 50 50" />
+      </svg>
+      <span class="line"></span>
+    </div>
+
+    <section class="historia" id="historia">
+      <div class="wrap">
+        <div class="historia-grid">
+          <div class="reveal historia-copy">
+            <p class="kicker">Sobre a marca</p>
+            <h2>História</h2>
+            <p>Algumas empresas nascem de uma oportunidade. A Nakaty Prime nasceu de uma convicção.</p>
+            <p>Depois de anos acompanhando de perto o mercado da podologia, Natália — ou simplesmente Naty, para os mais
+              próximos — percebeu algo que muitos ignoravam: os profissionais precisavam mais
+              do que fornecedores: precisavam de parceiros que compreendessem sua rotina, valorizassem seu trabalho e
+              entregassem qualidade sem concessões.</p>
+            <p>Ao lado de seu parceiro, ela decidiu transformar essa percepção em propósito. A ideia não era apenas
+              comercializar materiais e suprimentos, mas construir uma empresa baseada em confiança, excelência e
+              respeito ao profissional.</p>
+            <p> Foi assim que surgiu a Nakaty Prime. </p>
+            <p>Um nome que carrega a identidade de sua fundadora e reflete aquilo que sempre guiou sua trajetória: a
+              busca constante por um padrão superior em cada detalhe. Da seleção dos produtos ao atendimento, cada
+              decisão é tomada com o compromisso de oferecer soluções que realmente contribuam para o dia a dia de quem
+              atua na área da saúde e da podologia.</p>
+            <p>Mais do que fornecer produtos, a Nakaty Prime acredita em fortalecer profissionais. Porque por trás de
+              cada atendimento existe alguém dedicado ao cuidado de outras pessoas — e esse trabalho merece qualidade,
+              segurança e confiança.</p>
+            <p>Hoje, a mesma convicção que deu origem à empresa continua guiando cada passo da sua trajetória: elevar
+              padrões, construir relações duradouras e ser uma parceira presente no crescimento de cada cliente.</p>
+          </div>
+          <div class="reveal historia-visual">
+            <img src="historia-foto.jpg" alt="Pés casal">
+            <div class="photo-overlay"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="values" id="valores">
+      <div class="wrap">
+        <div class="section-head reveal" style="max-width:640px;">
+          <p class="section-eyebrow">Sobre a marca</p>
+          <h2 class="section-title">Missão, visão e <em>valores</em></h2>
+        </div>
+
+        <div class="mvv-top">
+          <div class="reveal mvv-block">
+            <h4>Missão</h4>
+            <blockquote>Elevar a prática da podologia através de uma curadoria de insumos que unem precisão técnica
+              e cuidado humano, garantindo que cada profissional tenha o suporte necessário para transformar a saúde
+              e o bem-estar de seus pacientes.</blockquote>
+          </div>
+          <div class="reveal mvv-block">
+            <h4>Visão</h4>
+            <blockquote>Ser a referência nacional em suprimentos para podologia, reconhecida pela excelência, pela
+              sofisticação no atendimento e pela capacidade de antecipar as necessidades do profissional que busca a
+              melhor performance.</blockquote>
+          </div>
+        </div>
+
+        <p class="valores-label reveal">Valores</p>
+        <div class="values-grid">
+          <div class="value-card reveal">
+            <span class="num">01</span>
+            <h3>Excelência</h3>
+            <p>Não entregamos menos do que o padrão Prime para quem confia no nosso trabalho.</p>
+          </div>
+          <div class="value-card reveal">
+            <span class="num">02</span>
+            <h3>Transparência</h3>
+            <p>Procedência garantida em cada item, promovendo segurança total ao profissional.</p>
+          </div>
+          <div class="value-card reveal">
+            <span class="num">03</span>
+            <h3>Cuidado</h3>
+            <p>Entendemos que nossos produtos são as ferramentas que viabilizam o cuidado com o outro.</p>
+          </div>
+          <div class="value-card reveal">
+            <span class="num">04</span>
+            <h3>Humanização</h3>
+            <p>Atendimento próximo, ágil e feliz, porque a nossa relação com o cliente é a nossa base.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-section">
+      <svg class="quote-lotus" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="1">
+        <path
+          d="M50 92 C50 92 50 50 50 50 M50 50 C30 50 14 34 14 12 C36 12 50 28 50 50 M50 50 C70 50 86 34 86 12 C64 12 50 28 50 50 M50 50 C28 60 8 54 -2 34 C20 28 40 36 50 50 M50 50 C72 60 92 54 102 34 C80 28 60 36 50 50" />
+      </svg>
+      <div class="reveal quote-mark">&#8220;</div>
+      <p class="reveal quote-text">Trabalhar com a Nakaty Prime é ter a tranquilidade de saber que cada produto que
+        chega até
+        mim foi escolhido com o mesmo cuidado que eu ofereço aos meus pacientes.</p>
+      <p class="reveal quote-attr">PODÓLOGA PARCEIRA NAKATY PRIME</p>
+    </section>
+
+    <section class="cta-section" id="contato">
+      <div class="wrap">
+        <div class="cta-grid reveal">
+          <div class="cta-left">
+            <h2>Vamos cuidar do seu consultório juntos?</h2>
+            <p>Fale com a gente para conhecer condições especiais, formas de pagamento e prazos de entrega para o seu
+              pedido.</p>
+            <div class="contact-list">
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path
+                    d="M3 5a2 2 0 0 1 2-2h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 12l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 5z" />
+                </svg>
+                <a href="https://wa.me/5515991593170" target="_blank" rel="noopener">WhatsApp — (15) 99159-3170</a>
+              </div>
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="M3 7l9 6 9-6" />
+                </svg>
+                <a href="mailto:nakatyprime@gmail.com">nakatyprime@gmail.com</a>
+              </div>
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <rect x="2" y="7" width="11" height="9" rx="1" />
+                  <path d="M13 10h4l3 3v3h-7z" />
+                  <circle cx="7" cy="18" r="2" />
+                  <circle cx="17" cy="18" r="2" />
+                </svg>
+                <span> Sorocaba - SP | Envios para todo Brasil </span>
+              </div>
+            </div>
+          </div>
+          <div class="cta-right">
+            <svg class="bg-lotus" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
+              <path
+                d="M50 92 C50 92 50 50 50 50 M50 50 C30 50 14 34 14 12 C36 12 50 28 50 50 M50 50 C70 50 86 34 86 12 C64 12 50 28 50 50" />
+            </svg>
+            <p class="tag">Instagram</p>
+            <h3>Siga-nos no Instagram e não perca nenhuma novidade!</h3>
+            <a href="https://www.instagram.com/nakatyprime/" class="btn-white" target="_blank">
+              @nakatyprime
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <img src="lotus-nakaty.png" alt="Nakaty Prime" style="width:52px;height:52px;object-fit:contain;">
+            Nakaty Prime
+          </div>
+          <p class="footer-slogan">Escolhida por quem entende de cuidado.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/nakatyprime" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+            </a>
+            <a href="https://wa.me/5515991593170" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12.004 2.003c-5.514 0-9.997 4.483-9.997 9.997 0 1.762.462 3.484 1.34 5.003l-1.42 5.19 5.312-1.394a9.96 9.96 0 0 0 4.765 1.213h.004c5.514 0 9.997-4.483 9.997-9.997 0-2.67-1.04-5.18-2.929-7.07a9.935 9.935 0 0 0-7.072-2.942zm5.85 15.849a8.29 8.29 0 0 1-5.85 2.424h-.003a8.302 8.302 0 0 1-4.223-1.155l-.303-.18-3.146.825.84-3.068-.198-.315a8.264 8.264 0 0 1-1.269-4.417c0-4.591 3.736-8.327 8.328-8.327a8.272 8.272 0 0 1 5.888 2.444 8.272 8.272 0 0 1 2.436 5.885 8.284 8.284 0 0 1-2.5 5.884z"></path></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <a href="https://nakatyprime.com.br">Início</a>
+          <a href="https://nakatyprime.com.br/produtos/">Produtos</a>
+          <a href="index.html">Quem Somos</a>
+          <a href="central-ajuda.html">Central de Ajuda</a>
+        </div>
+        <div class="footer-col">
+          <h4>Atendimento</h4>
+          <a href="mailto:nakatyprime@gmail.com">Email</a>
+          <a href="https://wa.me/5515991593170" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="mailto:trocas@nakatyprime.com.br">Trocas</a>
+          <a href="mailto:cancelamentos@nakatyprime.com.br">Cancelamentos</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Nakaty Prime. Todos os direitos reservados.</span>
+        <span>Revenda especializada em insumos de podologia</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Hero carousel
+    (function () {
+      const slides = document.querySelectorAll('.hero-slide');
+      const dots = document.querySelectorAll('.hero-dot');
+      let current = 0;
+
+      function goTo(n) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = n % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      dots.forEach((dot, i) => dot.addEventListener('click', () => {
+        clearInterval(timer);
+        goTo(i);
+        timer = setInterval(() => goTo(current + 1), 4000);
+      }));
+
+      let timer = setInterval(() => goTo(current + 1), 4000);
+    })();
+
+    const burger = document.querySelector('.burger');
+    const navlinks = document.querySelector('.navlinks');
+    burger.addEventListener('click', () => {
+      const isOpen = navlinks.style.display === 'flex';
+      const headerHeight = document.querySelector('.nav-top').offsetHeight;
+      navlinks.style.cssText = isOpen ? '' : `display:flex;position:fixed;top:${headerHeight}px;left:0;right:0;flex-direction:column;align-items:flex-start;background:var(--wine);padding:24px 32px;border-bottom:1px solid rgba(255,255,255,0.1);gap:20px;`;
+    });
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => io.observe(el));
+  </script>
+</body>
+
+</html>
